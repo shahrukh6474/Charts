@@ -1,0 +1,16 @@
+{
+  "name": "NodeApplication",
+  "version": "0.0.1",
+  "author": "",
+  "keywords": [],
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "express": "4.15.2",
+    "morgan": "1.8.1",
+    "mysql": "2.13.0"
+  },
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
+  }
+}

@@ -1,0 +1,98 @@
+[
+    {
+        "letter": "12a",
+        "frequency": 0
+    },
+    {
+        "letter": "1a",
+        "frequency": 4.74
+    },
+    {
+        "letter": "2a",
+        "frequency": 4.0
+    },
+    {
+        "letter": "3a",
+        "frequency": 3
+    },
+    {
+        "letter": "4a",
+        "frequency": 5
+    },
+    {
+        "letter": "5a",
+        "frequency": 0.5
+    },
+    {
+        "letter": "6a",
+        "frequency": 4.1
+    },
+    {
+        "letter": "7a",
+        "frequency": 4.5
+    },
+    {
+        "letter": "8a",
+        "frequency": 4.8
+    },
+    {
+        "letter": "9a",
+        "frequency": 1.5
+    },
+    {
+        "letter": "10a",
+        "frequency": 3.5
+    },
+    {
+        "letter": "11a",
+        "frequency": 2
+    },
+    {
+        "letter": "12p",
+        "frequency": 1.1
+    },
+    {
+        "letter": "1p",
+        "frequency": 4.75
+    },
+    {
+        "letter": "2p",
+        "frequency": 4.1
+    },
+    {
+        "letter": "3p",
+        "frequency": 5
+    },
+    {
+        "letter": "4p",
+        "frequency": 4.2
+    },
+    {
+        "letter": "5p",
+        "frequency": 3.8
+    },
+    {
+        "letter": "6p",
+        "frequency": 1.8
+    },
+    {
+        "letter": "7p",
+        "frequency": 2
+    },
+    {
+        "letter": "8p",
+        "frequency": 4
+    },
+    {
+        "letter": "9p",
+        "frequency": 5
+    },
+    {
+        "letter": "10p",
+        "frequency": 4.7
+    },
+    {
+        "letter": "11p",
+        "frequency": 5
+    }
+]

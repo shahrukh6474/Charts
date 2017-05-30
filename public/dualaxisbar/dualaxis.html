@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Dual Axis Bar Chart</title>
+</head>
+
+<body>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='dualaxis.js'></script>
+    <link rel="stylesheet" href="dualstyle.css">
+    <svg width="600" height="600" class="chart"></svg>
+    <button type='button' class='btn btn-info backbutton'>Go Back</button>
+    <script>
+        // d3.json("http://192.168.5.81:3000/user-travelled-avg-data", function (result) {
+        //     console.log(result, 'result')
+
+        // })
+        d3.json("http://192.168.1.138:3000/user-travelled-avg-data", function (error, data) {
+            console.log(data)
+            renderbarchart(data);
+        })
+
+
+        function renderbarchart(data) {
+
+            var margin = { top: 20, right: 80, bottom: 60, left: 80 },
+                width = 800 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+            var x = d3.scale.ordinal()
+                .rangeRoundBands([0, width], .1);
+
+            var y = d3.scale.linear()
+                .range([height, 0]);
+
+            var y2 = d3.scale.linear()
+                .range([height, 0]);
+
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
+
+            var yAxis2 = d3.svg.axis()
+                .scale(y2)
+                .orient("right")
+                .ticks(5);
+
+            var chart = d3.select(".chart")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr('class', 'bargelement')
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+
+            x.domain(data.map(function (d) { return d.Distancerange; }));
+            y.domain([0, d3.max(data, function (d) { return d.users; })]);
+            y2.domain([0, d3.max(data, function (d) { return d.avg_score; })]);
+
+            chart.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .append('text')
+                .attr("transform", "translate(" + (width / 2) + "," + (margin.bottom - 10) + ")")
+                .style('font-weight', 'bold')
+                .text('Driving Range')
+
+            chart.append("g")
+                .attr("class", "y-axis")
+                .call(yAxis)
+                .append('text')
+                .attr("transform", "translate(" + (-(margin.left / 2)) + "," + (height / 2) + ")rotate(-90)")
+                .style('font-weight', 'bold')
+                .text('Number of Users')
+
+            chart.append("g")
+                .attr("class", "y-axis-2")
+                .attr("transform", "translate(" + width + " ,0)")
+                .call(yAxis2)
+                .append('text')
+                .attr("transform", "translate(" + ((margin.left / 2)) + "," + (height / 2) + ")rotate(-90)")
+                .style('font-weight', 'bold')
+                .text('Average Rating')
+
+            chart.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("y", height)
+                .attr("height", 0)
+                .transition()
+                .duration(1000)
+                .attr("x", function (d) { return x(d.Distancerange); })
+                .attr("y", function (d) { return y(d.users); })
+                .attr("height", function (d) { return height - y(d.users); })
+                .attr("width", x.rangeBand());
+
+
+            // height - y2(d.avg)
+            chart.selectAll(".barforAvg")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "barbarforAvg")
+                .attr("x", function (d) { return x(d.Distancerange); })
+                .attr("y", function (d) { return y2(d.avg_score); })
+                .attr("height", function (d) { return 2; })
+                .attr("width", x.rangeBand());
+
+
+            d3.selectAll('.bar')
+                .on('click', function (d) {
+                    d3.selectAll('.bargelement').style('opacity', 0);
+                    d3.select('.backbutton').style('display', 'block');
+
+                    console.log(d, 'd')
+
+                    var url = 'http://192.168.1.138:3000/sub-range-users?rangeVal=' +d.Distancerange;
+                    d3.json(url, function (error, data) {
+                        console.log(data)
+                        renderdrilldownchart(data);
+                    })
+
+                    // renderdrilldownchart(d.barData);
+                })
+
+
+
+            chart.selectAll('.avgValue')
+                .data(data)
+                .enter()
+                .append('text')
+                .attr('class', 'avgValue')
+                .attr("x", function (d) { return x(d.Distancerange) + (x.rangeBand() / 2); })
+                .attr("y", function (d) { return y2(d.avg_score) - 2; })
+                .text(function (d) {
+                    return d.avg_score;
+                })
+                .style('font-weight', 'bold')
+                .style('font-weight', '12px')
+
+
+            d3.select('.backbutton')
+                .on('click', function (d) {
+                    d3.selectAll('.bar').attr("y", height)
+                        .attr("height", 0)
+                        .transition()
+                        .duration(1000)
+                        .attr("x", function (d) { return x(d.Distancerange); })
+                        .attr("y", function (d) { return y(d.users); })
+                        .attr("height", function (d) { return height - y(d.users); })
+                        .attr("width", x.rangeBand());
+                    d3.selectAll('.bargelement').style('opacity', 1);
+                    d3.select('.backbutton').style('display', 'none');
+                    d3.selectAll('.drillelement').remove();
+
+                })
+
+        }
+    </script>
+</body>

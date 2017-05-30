@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    body {
+        font: 12px Arial;
+    }
+    
+    path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+    
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+    
+    .bar {
+        fill: orange;
+        /*opacity:0.1*/
+    }
+    
+    .bar2 {
+        fill: green;
+        /*opacity:0.1*/
+    }
+</style>
+
+<body>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <svg width="600" height="600" class="chart"></svg>
+    <script>
+        var data = [
+            {
+                "letter": "0-100",
+                "frequency": 500,
+                "avg": 5
+            },
+            {
+                "letter": "100-200",
+                "frequency": 600,
+                "avg": 4
+            },
+            {
+                "letter": "200-300",
+                "frequency": 400,
+                "avg": 2
+            },
+            {
+                "letter": "300-400",
+                "frequency": 1200,
+                "avg": 1
+            },
+            {
+                "letter": "400-500",
+                "frequency": 100,
+                "avg": 5
+            },
+            {
+                "letter": "500-600",
+                "frequency": 800,
+                "avg": 3
+            },
+            {
+                "letter": "600-700",
+                "frequency": 200,
+                "avg": 4
+            },
+            {
+                "letter": "700-800",
+                "frequency": 600,
+                "avg": 5
+            }
+
+        ]
+
+
+        renderbarchart(data);
+        function renderbarchart(data) {
+
+            var margin = { top: 20, right: 30, bottom: 30, left: 40 },
+                width = 800 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+            var x = d3.scale.ordinal()
+                .rangeRoundBands([0, width], .1);
+
+            var y = d3.scale.linear()
+                .range([height, 0]);
+
+            var y2 = d3.scale.linear()
+                .range([height, 0]);
+
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
+
+            var yAxis2 = d3.svg.axis()
+                .scale(y2)
+                .orient("right")
+                .ticks(5);
+
+
+            var chart = d3.select(".chart")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr('class', 'bargelement')
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+
+            x.domain(data.map(function (d) { return d.letter; }));
+            y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
+            y2.domain([0, d3.max(data, function (d) { return d.avg; })]);
+
+            chart.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+            // .append('text')
+            // .attr("transform", "translate(-30," + (-(height/2)) + ")")
+            // .text('hi')
+
+            chart.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
+
+            chart.append("g")
+                .attr("class", "y-axis-2")
+                .attr("transform", "translate(" + width + " ,0)")
+                .call(yAxis2);
+
+            chart.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("y", height)
+                .attr("height", 0)
+                .transition()
+                .duration(1000)
+                .attr("x", function (d) { return x(d.letter); })
+                .attr("y", function (d) { return y(d.frequency); })
+                .attr("height", function (d) { return height - y(d.frequency); })
+                .attr("width", x.rangeBand() / 2);
+
+
+            // height - y2(d.avg)
+            chart.selectAll(".bar2")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar2")
+                .attr("y", height)
+                .attr("height", 0)
+                .transition()
+                .duration(1500)
+                .attr("x", function (d) { return x(d.letter) + x.rangeBand() / 2; })
+                .attr("y", function (d) { return y2(d.avg); })
+                .attr("height", function (d) { return height - y2(d.avg); })
+                .attr("width", x.rangeBand() / 2);
+
+
+
+        }
+    </script>
+</body>

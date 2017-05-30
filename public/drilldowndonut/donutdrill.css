@@ -1,0 +1,99 @@
+  .piearc text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+    }
+    
+    .bar-drilldown {
+        /*fill: steelblue;*/
+    }
+    
+    .x-axis-drilldown text,.y-axis-drilldown text {
+        font: 10px sans-serif;
+    }
+    
+    .x-axis-drilldown path,.y-axis-drilldown path {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+    
+    .x-axis-drilldown path{
+        /*display: none;*/
+    }
+    .x-axis-drilldown line,.y-axis-drilldown line
+{
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+    opacity:0.2
+}
+    .togglebutton {
+        display: none;
+    }
+
+    .tool-tip-pie {position :absolute; display : none; width : auto; height : auto; background : none repeat scroll 0 0 white;
+border : none; border-radius :8px 8px 8px 8px ;box-shadow: -3px 3px 15px #888888; color : black;font : 12px; padding :5px;
+ text-align : center;font-weight : bold};
+
+   .stop-left-mainGradient {
+            stop-color: red;
+            /* Indigo */
+        }
+        
+        .stop-right-mainGradient {
+            stop-color: red;
+            /* Teal */
+        }
+
+         .stop-left-mainGradient2 {
+            /*stop-color: #ff1b00;*/
+            stop-color: #ff2900;
+            /* Indigo */
+        }
+        
+        .stop-right-mainGradient2 {
+            /*stop-color: #ff2900;*/
+             stop-color: #ff1b00;
+            /* Teal */
+        }
+        .stop-left-mainGradient3 {
+            /*stop-color: #ff3700;*/
+            stop-color: #ff4500;
+            /* Indigo */
+        }
+        
+        .stop-right-mainGradient3 {
+            /*stop-color: #ff4500;*/
+            stop-color: #ff3700;
+            /* Teal */
+        }
+
+.stop-left-mainGradient4 {
+            /*stop-color: #ff5200;*/
+             stop-color: #ff6000
+            /* Indigo */
+        }
+        
+        .stop-right-mainGradient4 {
+            /*stop-color: #ff6000*/
+            stop-color: #ff5200;
+            /* Teal */
+        }
+
+        .stop-left-mainGradient5 {
+            stop-color: #00B050;
+            /* Indigo */
+        }
+        
+        .stop-right-mainGradient5 {
+            stop-color: #FFBC00
+            /*#FFBC00*/
+            /* Teal */
+        }
+
+.mouseonClass
+{
+    stroke:white;
+    stroke-width:2;
+}

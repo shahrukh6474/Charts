@@ -1,0 +1,37 @@
+
+    
+    /*path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }*/
+    
+    .x-axis-daws path,.y-axis-daws path,.y-axis-daws2 path,.y-axis-daws2 line,   
+    .x-axis-drill-daws path,.y-axis-drill-daws path {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+    
+    .y-axis-daws line, .x-axis-daws line,.x-axis-drill-daws line,.y-axis-drill-daws line  {
+         fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    opacity:0.2;
+    }
+    
+    .barforAvg_daws {
+        fill: red;
+        /*opacity:0.1*/
+    }
+
+    .backbutton_daws
+    {
+        display:none;
+    }
+    .drill-bar-daws
+    {
+        /*fill:green;*/
+    }

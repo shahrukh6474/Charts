@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Dual Axis Bar Chart</title>
+</head>
+
+<body>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='dualaxiswithstates.js'></script>
+    <link rel="stylesheet" href="dualstylewithstates.css">
+    <svg width="600" height="600" class="dualaxiswithstate"></svg>
+    <button type='button' class='btn btn-info backbutton_daws'>Go Back</button>
+    <script>
+        // d3.json("http://192.168.5.81:3000/user-travelled-avg-data", function (result) {
+        //     console.log(result, 'result')
+
+        // })
+        // d3.json("http://192.168.1.138:3000/user-travelled-avg-data", function (error, data) {
+        //     console.log(data)
+        //     renderstatesbarchart(data);
+        // })
+         d3.json("http://192.168.5.81:3000/state-chart", function (error, data) {
+            console.log(data)
+            renderstatesbarchart(data);
+        })
+
+    </script>
+</body>

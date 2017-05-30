@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Create Screen</title>
+	<!-- SET: FAVICON -->
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- END: FAVICON -->
+	<!-- SET: STYLESHEET -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-daterangepicker.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	 crossorigin="anonymous">
+	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" href="drilldowndonut/donutdrill.css">
+	<link rel="stylesheet" href="dualaxisbar/dualstyle.css">
+	<link rel="stylesheet" href='multiseriesline/multiseriesline.css' />
+	<link rel="stylesheet" href='dualaxiswithstates/dualstylewithstates.css' />
+	<!--dualaxiswithstates-->
+
+	<script src='drilldowndonut/drilldown.js'></script>
+	<script src='dualaxisbar/dualaxis.js'></script>
+	<script src='dualaxisbar/3dbar.js'></script>
+	<script src='dualaxisbar/utils.js'></script>
+	<script src='multiseriesline/multiseriesline.js'></script>
+	<script src='dualaxiswithstates/dualaxiswithstates.js'></script>
+
+
+	<!-- END: SCRIPTS -->
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+	<!-- SET: CONTAINER -->
+
+	<!-- SET: HEADER -->
+	<div id="header" class="login">
+		<div class="container">
+			<div class="logo">
+				<a href="dashboard.html"><img src="images/logo@3x.png" /></a>
+			</div>
+			<div id="parent_reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+				<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+				<span></span> <b class="caret"></b>
+			</div>
+			<div class="col-lg-4 productmodule">Product Module</div>
+			<div class="mobile-icon"></div>
+		</div>
+	</div>
+	<div class="main_content">
+		<div class="left-block-main  ">
+			<div id="menu-content-demo" class="menu-content top animated fadeIn">
+				<div>
+					<div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span></div>
+					<!-- <img class="" alt="" src="images/1.jpg"> -->
+					<div class="btn-group"> <a class="btn btn-xs btn-primary btn-outline dark" href="#"><i class="fa fa-envelope"></i></a> <a class="btn btn-xs btn-primary btn-outline dark"
+						 href="#"><i class="fa fa-user"></i></a> <a class="btn btn-xs btn-primary btn-outline dark" href="#"><i class="fa fa-cog"></i></a>						<a class="btn btn-xs btn-danger btn-outline dark" href="#"><i class="fa fa-power-off"></i></a> </div>
+					<a class="close" href="#">×</a> </div>
+			</div>
+			<ul>
+				<li><a href="useradministration.html"><span class="icon-row"><b class=" fa fa-users"></b></span><span class="text"> User  Administration</span></a>					</li>
+				<li><a class="active" href="#"><span class="icon-row"><b class="icon-nav fa fa-dashboard"></b></span> <span class="text">Product Management</span></a>					</li>
+				<li><a href="polcymanagement.html"><span class="icon-row"><b class="icon-nav fa fa-dashboard"></b></span> <span class="text">Policy Management</span></a>					</li>
+
+				<li class="arrow-menu"><a href="#"><span class="icon-row"><b class="icon-nav fa fa-th"></b></span> <span class="text">Wizard Management</span></a>
+					<ul>
+						<li><a href="create-wizard.html"> Add Screen  </a> </li>
+						<li><a href="#"> Integration Points </a></li>
+						<li><a href="select-widget.html"> widget Management </a> </li>
+						<li><a href="viewfields.html"> Field Management </a> </li>
+						<li><a href="document_management.html">  Document Management </a> </li>
+						<li><a href="Policy_Workflow.html"> Policy Workflow </a> </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="right-block-main">
+			<div class="page-header">
+				<h1>Dash Board </h1>
+			</div>
+			<div class="page-content">
+				<div class="col-lg-6">
+					<div class="panel panel-dark panel-light-green">
+						<div class="panel-heading"><span class="icon-row"><i class="fa fa-dashboard" aria-hidden="true"></i></span><span class="panel-title">Driving Scoreboard</span></div>
+						<div class="panel-body dash-panel-body donutpanel">
+							<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+								<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+								<span></span> <b class="caret"></b>
+							</div>
+							<svg width="600" height="450" class="drilldownchart"></svg>
+							<button type='button' class='btn btn-info togglebutton'>Go Back</button>
+						</div>
+					</div>
+					<!-- / .panel -->
+				</div>
+				<div class="col-lg-6">
+					<div class="panel panel-dark panel-light-green">
+						<div class="panel-heading"><span class="icon-row"><i class="fa fa-dashboard" aria-hidden="true"></i></span><span class="panel-title">Driving usage</span></div>
+						<div class="panel-body dash-panel-body">
+							<div id="reportrange_da" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+								<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+								<span></span> <b class="caret"></b>
+							</div>
+							<svg width="600" height="450" class="dualaxischart"></svg>
+							<button type='button' class='btn btn-info backbutton'>Go Back</button>
+						</div>
+					</div>
+					<!-- / .panel -->
+				</div>
+				<div class="col-lg-6">
+					<div class="panel panel-dark panel-light-green">
+						<div class="panel-heading"><span class="icon-row"><i class="fa fa-dashboard" aria-hidden="true"></i></span><span class="panel-title">States</span></div>
+						<div class="panel-body dash-panel-body">
+							<div id="reportrange_das" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+								<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+								<span></span> <b class="caret"></b>
+							</div>
+							<svg width="600" height="450" class="dualaxiswithstate"></svg>
+							<button type='button' class='btn btn-info backbutton_daws'>Go Back</button>
+						</div>
+					</div>
+					<!-- / .panel -->
+				</div>
+				<div class="col-lg-6">
+					<div class="panel panel-dark panel-light-green">
+						<div class="panel-heading"><span class="icon-row"><i class="fa fa-dashboard" aria-hidden="true"></i></span><span class="panel-title">Registration vs Actual</span></div>
+						<div class="panel-body dash-panel-body">
+							<div id="reportrange_msl" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+								<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+								<span></span> <b class="caret"></b>
+							</div>
+							<div id="line_chart" style="width:100%;height:100%"></div>
+
+						</div>
+					</div>
+					<!-- / .panel -->
+				</div>
+
+				<!-- page-content -->
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="container">
+			<p>© 2014 Xemplar Auto Insurance. All Rights Reserved.</p>
+		</div>
+	</div>
+	<!-- END: FOOTER -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="js/respond.js"></script>
+
+	<script type="text/javascript">
+		/**/
+		//http://192.168.5.81:3000/pie-chart http://192.168.1.138:3000/
+		callparentdatepicker();
+		d3.json("/user-travelled-avg-data", function (error, data) {
+			// console.log(data)
+			renderbarchart(data, '', 'first');
+			// renderdrilldownchart(data);
+		})
+
+
+		d3.json('/pie-chart', function (data) {
+			// console.log(data);
+			renderpiechart(data, '', 'first');
+		})
+		//d3.json("piedata.json", function (error, data) { 
+		// renderpiechart(data);
+		// }) 
+
+		d3.json('/cumulative-chart', function (data) {
+			// console.log(data)
+			renderlinechart(data, '', 'first');
+		});
+
+		d3.json("/state-chart", function (error, data) {
+			// console.log(data)
+			renderstatesbarchart(data, '', 'first');
+		});
+
+
+		
+		function callparentdatepicker() {
+			var start = moment().subtract(29, 'days');
+			var end = moment();
+			function cbparent(start, end) {
+				$('#parent_reportrange').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+				// callChartda(start, end);
+			}
+
+			//clall date range picker
+			$('#parent_reportrange').daterangepicker({
+				startDate: start,
+				endDate: end,
+				ranges: {
+					'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+
+				},
+				id: 'dual_axis'
+			}, cbparent);
+
+			cbparent(start, end);
+
+		};
+	</script>
+
+</body>
+
+</html>

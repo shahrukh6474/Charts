@@ -1,0 +1,139 @@
+[
+    {
+        "letter": "0 - 100",
+        "frequency": 500,
+        "avg": 5,
+        "barData": [
+            {
+                "letter": "0 - 1",
+                "frequency": 10
+            },
+            {
+                "letter": "1 - 2",
+                "frequency": 8
+            },
+            {
+                "letter": "2 - 3",
+                "frequency": 7
+            },
+            {
+                "letter": "3 - 4",
+                "frequency": 12
+            },
+            {
+                "letter": "4 - 5",
+                "frequency": 14
+            }
+        ]
+    },
+    {
+        "letter": "100 - 200",
+        "frequency": 600,
+        "avg": 4,
+         "barData": [
+            {
+                "letter": "0 - 1",
+                "frequency": 6
+            },
+            {
+                "letter": "1 - 2",
+                "frequency": 20
+            },
+            {
+                "letter": "2 - 3",
+                "frequency": 18
+            },
+            {
+                "letter": "3 - 4",
+                "frequency": 14
+            },
+            {
+                "letter": "4 - 5",
+                "frequency": 11
+            }
+        ]
+    
+    },
+    {
+        "letter": "200 - 300",
+        "frequency": 400,
+        "avg": 2,
+         "barData": [
+            {
+                "letter": "0 - 1",
+                "frequency": 1
+            },
+            {
+                "letter": "1 - 2",
+                "frequency": 8
+            },
+            {
+                "letter": "2 - 3",
+                "frequency": 9
+            },
+            {
+                "letter": "3 - 4",
+                "frequency": 15
+            },
+            {
+                "letter": "4 - 5",
+                "frequency": 14
+            }
+        ]
+    },
+    {
+        "letter": "300 - 400",
+        "frequency": 1200,
+        "avg": 1,
+         "barData": [
+            {
+                "letter": "0 - 1",
+                "frequency": 20
+            },
+            {
+                "letter": "1 - 2",
+                "frequency": 21
+            },
+            {
+                "letter": "2 - 3",
+                "frequency": 14
+            },
+            {
+                "letter": "3 - 4",
+                "frequency": 10
+            },
+            {
+                "letter": "4 - 5",
+                "frequency": 8
+            }
+        ]
+    },
+    {
+        "letter": "400 - 500",
+        "frequency": 100,
+        "avg": 5,
+         "barData": [
+            {
+                "letter": "0 - 1",
+                "frequency": 10
+            },
+            {
+                "letter": "1 - 2",
+                "frequency": 1
+            },
+            {
+                "letter": "2 - 3",
+                "frequency": 5
+            },
+            {
+                "letter": "3 - 4",
+                "frequency": 6
+            },
+            {
+                "letter": "4 - 5",
+                "frequency": 15
+            }
+        ]
+    }
+  
+]

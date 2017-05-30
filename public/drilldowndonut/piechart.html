@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+
+    <title>Drill Down Donut Chart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src='barchart.js'></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+    <span></span> <b class="caret"></b>
+</div>
+<svg width="600" height="600" class="chart"></svg>
+<button type='button' class='btn btn-info togglebutton'>tooglebutton</button>
+
+
+<script>
+    d3.json('http://192.168.1.138:3000/pie-chart', function (data) {
+        console.log(data);
+        renderpiechart(data);
+    })
+    d3.json("piedata.json", function (error, data) {
+        // renderpiechart(data);
+    })
+
+    function renderpiechart(data) {
+
+        data.forEach(function (d, i) {
+
+            if (d.trip_driving_score == null) {
+                d.trip_driving_score = "1 to 2";
+                d.id = 1;
+            }
+        });
+
+        var svg = d3.select(".chart"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height"),
+            width = width / 2,
+            height = height / 2,
+            radius = Math.min(width, height) / 2,
+            g = svg.append("g").attr('class', 'piegelement')
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var color = d3.scale.ordinal()
+            .range(['#5E4FA2', '#3288BD', '#66C2A5', '#ABDDA4', '#E6F598', '#F6FAAA', '#FEE08B', '#FDAE61', '#F46D43', '#D53E4F', '#9E0142']);
+
+        calldatepicker();
+
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "tool-tip");
+        var pie = d3.layout.pie()
+            .sort(null)
+            .value(function (d) { return d.count; });
+
+        var path = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(radius - 50);
+
+        var ghostPath = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(radius + 5);
+
+
+        var label = d3.svg.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+        var arc = g.selectAll(".arc")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "arc");
+        var ghostarc = g.selectAll(".ghostarc")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "ghostarc");
+        var svgDefs = svg.append('defs');
+        var mainGradient, mainGradient2, mainGradient3, mainGradient4, mainGradient5;
+
+        // Create the stops of the main gradient. Each stop will be assigned
+        // a class to style the stop using CSS.
+        // mainGradient.append('stop')
+        //     .attr('class', 'stop-left-5')
+        //     .attr('offset', '0');
+
+        // mainGradient.append('stop')
+        //     .attr('class', 'stop-right-5')
+        //     .attr('offset', '1');
+
+        // mainGradient2.append('stop')
+        //     .attr('class', 'stop-left-47')
+        //     .attr('offset', '0');
+
+        // mainGradient2.append('stop')
+        //     .attr('class', 'stop-right-47')
+        //     .attr('offset', '1');
+
+        // mainGradient3.append('stop')
+        //     .attr('class', 'stop-left-45')
+        //     .attr('offset', '0');
+
+        // mainGradient3.append('stop')
+        //     .attr('class', 'stop-right-45')
+        //     .attr('offset', '1');
+
+        // mainGradient4.append('stop')
+        //     .attr('class', 'stop-left-0')
+        //     .attr('offset', '0');
+
+        // mainGradient4.append('stop')
+        //     .attr('class', 'stop-right-0')
+        //     .attr('offset', '1');
+
+        var array = [mainGradient, mainGradient2, mainGradient3, mainGradient4, mainGradient5];
+        var gradiantNamearray = ['mainGradient', 'mainGradient2', 'mainGradient3', 'mainGradient4', 'mainGradient5']
+        arc.append("path")
+            .attr("fill", function (d, i) {
+
+                // return array[i];
+                if (i == 0) {
+                    return 'red';
+                } else {
+                    return createGradiant(array[i], gradiantNamearray[i], svgDefs)
+                }
+
+                // return color(d.data.trip_driving_score);
+
+            })
+            .attr('class', 'arcpath')
+            .transition()
+            .duration(2000)
+            .attrTween('d', function (d) {
+                var interpolate = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+                return function (t) {
+                    return path(interpolate(t));
+                };
+            });
+
+        var ghostpath = ghostarc.append("path")
+            .attr("d", ghostPath)
+            .attr("fill", function (d) { return color(d.data.trip_driving_score); })
+            .attr("class", function (d) {
+                return "ghostarc" + d.data.count
+            })
+            .style('opacity', 0)
+
+        arc.on('mouseover', function (d) {
+            $('.ghostarc' + d.data.count).css('opacity', 1);
+            tooltip.style("left", d3.event["pageX"] + 10 + "px");
+            tooltip.style("top", d3.event["pageY"] - 25 + "px");
+            tooltip.style("display", "inline-block");
+            tooltip.html(d.data.count)
+                .style("font-weight", "bold");
+
+        })
+            .on('mouseout', function (d) {
+                $('.ghostarc' + d.data.count).css('opacity', 0);
+                tooltip.style("display", "none");
+            });
+
+        arc.on('click', function (d) {
+            $('.piegelement').css('opacity', 0);
+            $('.togglebutton').css('display', 'block');
+            var eachpiebarData = d.data.barData;
+            // console.log(d,'d');debugger;
+            // var url = 'http://192.168.1.138:3000/bar-graph?id=' + d.data.id;
+            // d3.json(url, function (data) {
+            //     // console.log(data)
+            //     renderbarchart(data, '.chart', '');
+            //     $('.bargelement').css('opacity', 1);
+            // })
+            console.log(eachpiebarData)
+            renderbarchart(eachpiebarData, '.chart', '');
+            $('.bargelement').css('opacity', 1);
+
+
+        });
+        arc.append("text")
+            .attr("transform", function (d) { return "translate(" + label.centroid(d) + ")"; })
+            .attr("dy", "0.35em")
+            .text(function (d) {
+                // if( d.data.trip_driving_score == null)
+                // {
+                //     d.data.trip_driving_score = '0-1'
+                // }
+                return d.data.trip_driving_score;
+            });
+
+
+        d3.select('.togglebutton').on('click', function (d) {
+            $('.piegelement').css('opacity', 1);
+            $('.bargelement').remove();
+            $('.togglebutton').css('display', 'none')
+        })
+
+    };
+
+    function calldatepicker() {
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                // 'Today': [moment(), moment()],
+                // 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                // 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                // 'This Month': [moment().startOf('month'), moment().endOf('month')],
+                // 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+    };
+
+    //function used for create gradiant color
+    function createGradiant(graDiv, graName, svgDefs) {
+        graDiv = svgDefs.append('linearGradient')
+            .attr('id', graName);
+
+        graDiv.append('stop')
+            .attr('class', 'stop-left-' + graName)
+            .attr('offset', '0%');
+
+        graDiv.append('stop')
+            .attr('class', 'stop-right-' + graName)
+            .attr('offset', '100%');
+        var gradiant = '#' + graName;
+        return 'url(' + gradiant + ')';
+    }
+
+</script>
+</body>
+
+</html>

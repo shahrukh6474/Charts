@@ -1,0 +1,45 @@
+ body {
+        font: 12px Arial;
+    }
+    
+    /*path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }*/
+    
+    .x-axis-bardrilldown path,.y-axis-bardrilldown path,.y-axis-2 path,.y-axis-2 line,
+    .x-axis-drill path , .y-axis-drill path {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+    
+.y-axis-bardrilldown line,.x-axis-bardrilldown line ,.x-axis-drill line ,.y-axis-drill line{
+     fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+        opacity:0.2;
+    }
+
+    .Mainbar {
+        /*fill: orange;*/
+        /*opacity:0.1*/
+    }
+    
+    .barforAvg {
+        fill: red;
+        /*opacity:0.1*/
+    }
+
+    .backbutton
+    {
+        display:none;
+    }
+    .dash-panel-body .btn {position:absolute;bottom:10px;left:10px;}
+    .drill-bar
+    {
+        /*fill:green;*/
+    }

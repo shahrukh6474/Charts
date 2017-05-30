@@ -1,0 +1,25 @@
+/*body { font: 12px Arial;}*/
+
+/*path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}*/
+
+.x-axis-line path,.y-axis-line path
+ {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+    /*opacity:0.2*/
+}
+
+.x-axis-line line,.y-axis-line line
+{
+       fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+    opacity:0.2
+}

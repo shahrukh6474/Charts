@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trulia Trends</title>
+    <!--<script src="https://d3js.org/d3.v3.js"></script>-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src='heatmap.js'></script>
+    <script src='tuliatrendsbar.js'></script>
+    <script src='simplepie.js'></script>
+    <link rel="stylesheet" href="truliatrends.css">
+</head>
+
+<body>
+    <div id='container'>
+        <div id="heatmapchart">
+            <!--<div id='logo'>-->
+            <!--<img src='Picture1.png'></img>-->
+            <!--</div>-->
+        </div>
+        <div class='controls'>
+            <form class='gendertype'>
+                <button type="button" class="btn type all sel">All</button>
+                <button type="button" class="btn type male">Male</button>
+                <button type="button" class="btn type female">Female</button>
+
+            </form>
+
+            <div id="selState">
+                <button type="button" class="btn statestype sel">All States</button>
+            </div>
+            <h2 class='statename'>All States</h2>
+
+        </div>
+        <div id='mapchart'></div>
+        <div id='piebarcontainer'>
+            <div id='piecontainer'>
+                <div id='piechart'></div>
+                <ul>
+                    <li class="male"><span class='mspan'></span> Male</li>
+                    <li class="female"><span class='fspan'></span> Female</li>
+                </ul>
+            </div>
+            <div id='barcontainer'>
+                <div id='barchart'></div>
+                <p class="subtitle">All traffic daily</p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //Width and height
+        var w = 320;
+        var h = 202;
+        var pieData = [{
+            "gender": "male",
+            "population": 2704659
+        },
+        {
+            "gender": "female",
+            "population": 4499890
+        }
+        ];
+        var pieData2 = [{
+            "gender": "male",
+            "population": 50000000
+        },
+        {
+            "gender": "female",
+            "population": 40000000
+        }
+        ];
+        var polpulationArray = [];
+        pieData.forEach(function (d) {
+            polpulationArray.push(d.population)
+
+        });
+
+        $('.mspan').text(Math.round((polpulationArray[0] / (polpulationArray[0] + polpulationArray[1])) * 100) + '%');
+        $('.fspan').text(Math.round((polpulationArray[1] / (polpulationArray[0] + polpulationArray[1])) * 100) + '%')
+        //plot map
+        ploptmap();
+
+        function ploptmap() {
+            //Define map projection
+            var projection = d3.geo.albersUsa()
+                .translate([w / 2, h / 2])
+                .scale([450]);
+            //Define path generator
+            var path = d3.geo.path()
+                .projection(projection);
+            //Create SVG element
+            var svg = d3.select("#mapchart")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .append("g");
+
+
+            d3.json("us.json", function (error, us) {
+                svg.append("path")
+                    .attr("class", "state-borders")
+                    .attr("d", path(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; })));
+            })
+
+
+            //Load in GeoJSON data
+            d3.json("us-states.json", function (json) {
+
+                //Bind data and create one path per GeoJSON feature
+                svg.selectAll("path")
+                    .data(json.features)
+                    .enter()
+                    .append("path")
+                    .attr('class', 'states')
+                    .attr("d", path)
+                // .append('text')
+                // .text('hii')
+
+                // d3.json("readme.json", function (json) {
+                //     g.selectAll("path")
+                //         .data(json.features)
+                //         .enter()
+                //         .append("path")
+                //         .attr("d", path)
+                        // .on("click", click);
+
+                    svg.selectAll("text")
+                        .data(json.features)
+                        .enter()
+                        .append("svg:text")
+                        .text(function (d) {
+                            return d.properties.sname;
+                        })
+                        .attr("x", function (d) {
+                            if( path.centroid(d)[0])
+                            return path.centroid(d)[0];
+                        })
+                        .attr("y", function (d) {
+                            if( path.centroid(d)[0])
+                            return path.centroid(d)[1];
+                        })
+                        .attr("text-anchor", "middle")
+                        .attr('font-size', '4.5pt');
+
+
+                // });
+
+            });
+
+        };
+
+
+
+        //click event
+        $('body').on('click', '.states', function (d) {
+
+            if ($('.states').hasClass('statesel')) {
+                $('.states').removeClass('statesel');
+            }
+            $(this).addClass('statesel');
+            $('#selState button').removeClass('sel');
+
+            $('.statename').text(d.target.__data__.properties.name);
+            console.log(d.target.__data__.properties.name, 'd')
+            polpulationArray = [];
+            pieData2.forEach(function (d) {
+                polpulationArray.push(d.population)
+
+            });
+            $('.mspan').text(Math.round((polpulationArray[0] / (polpulationArray[0] + polpulationArray[1])) * 100) + '%');
+            $('.fspan').text(Math.round((polpulationArray[1] / (polpulationArray[0] + polpulationArray[1])) * 100) + '%');
+
+            d3.json("heatmap2.json", function (error, data) {
+                heatmapChart(data);
+                plotsimpepie(pieData2);
+            });
+            d3.json("truliabar2.json", function (error, barData) {
+                renderbarchart(barData, '#barchart');
+            });
+        });
+
+        //plotting heta map 
+        d3.json("heatmap.json", function (error, data) {
+            heatmapChart(data);
+        });
+        //plotting pie chart
+        plotsimpepie(pieData);
+
+        //plot bar chart 
+        d3.json("truliabar.json", function (error, barData) {
+            renderbarchart(barData, '#barchart');
+        });
+
+        $('.type').on('click', function () {
+
+            if ($('.type').hasClass('sel')) {
+                $('.type').removeClass('sel');
+            }
+            $(this).addClass('sel')
+            console.log($(this).text())
+            d3.json("heatmap.json", function (error, data) {
+                heatmapChart(data);
+            });
+        });
+
+        $('.statestype').on('click', function (d) {
+
+            if ($('.states').hasClass('statesel')) {
+                $('.states').removeClass('statesel');
+            }
+
+            $(this).addClass('sel');
+            $('.statename').text('All States');
+            d3.json("heatmap.json", function (error, data) {
+                heatmapChart(data);
+            });
+        });
+
+        $('.gendertype .male').on('click', function (d) {
+            $('.arc.female path').css('fill', '#CCCCCC');
+            $('.arc.male path').css('fill', '#444');
+        });
+
+        $('.gendertype .female').on('click', function (d) {
+            $('.arc.male path').css('fill', '#DDDDDD');
+            $('.arc.female path').css('fill', '#444');
+        });
+        $('.gendertype .all').on('click', function (d) {
+            $('.arc.female path').css('fill', '#CCCCCC');
+            $('.arc.male path').css('fill', '#DDDDDD');
+        });
+    </script>
+</body>
+
+</html>

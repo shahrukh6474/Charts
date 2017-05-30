@@ -1,0 +1,299 @@
+  body{
+      position: relative
+  }
+  
+   .states {
+            fill: #DDDDDD;
+        }
+        
+.states:hover
+{
+fill:#999999;
+}
+.statesel
+{
+ fill:#444444;   
+}
+
+.statesdesel
+{
+    fill: #DDDDDD;
+}
+        .state-borders {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 0.5px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            pointer-events: none;
+        }
+        
+        rect.bordered {
+            stroke: #E6E6E6;
+            stroke-width:2px;
+        }
+
+         rect.tiles:hover {
+            stroke: black;
+            stroke-width: 1px;
+        }
+        
+        text.mono {
+            font-size: 9pt;
+            font-family: Consolas, courier;
+            fill: #aaa;
+        }
+        
+        text.axis-workweek {
+            fill: #000;
+        }
+        
+        text.axis-worktime {
+            fill: #000;
+        }
+        
+        .arc text {
+            font: 10px sans-serif;
+            text-anchor: middle;
+        }
+        
+        .arc path {
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        
+        #piebarcontainer {
+            float: right;
+            width: 515px;
+                position: relative;
+    bottom: 190px;
+        }
+        
+        #piecontainer {
+            float: left;
+        }
+        
+        #barcontainer{
+          float: left;
+          width:200px;
+        }
+        #container {
+            width: 960px;
+            margin: 0 auto;
+            padding: 30px 0 10px 0;
+            position: relative;
+        }
+
+        .mapchart{
+                /*width: 400px;*/
+    float: right;
+    margin-right: 20px;
+        };
+
+        .bar {
+  fill: steelblue;
+}
+
+.axis text ,.x-axis-hidden{
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line , .x-axis-hidden path , .x-axis-hidden line{
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path,.x.axis .tick line,.x-axis-hidden path , .x-axis-hidden .tick line{
+  display: none;
+}
+.y.axis path , .y.axis .tick  {
+  display: none;
+}
+
+.removeText
+{
+display: none;
+}
+
+.visibleText
+{
+    display: block;
+};
+
+.visibleTextImp
+{
+display: block !important;    
+}
+
+.visiblex{
+    opacity:1 !important
+}
+div , li , fieldset
+{
+margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+#piebarcontainer ul{
+list-style-type: none;
+    margin-top: 20px 0 0 45px;
+    width: 190px;
+    top: -14px;
+    left: -28px;
+    position: relative;
+}
+
+#piebarcontainer li{
+        float: left;
+    width: 75px;
+    text-align: center;
+}
+#piebarcontainer span
+{
+    display: block;
+    font-size: 24px;
+    line-height: 24px;
+
+}
+
+#heatmapchart
+{
+    margin-bottom: -20px;
+}
+p.subtitle {
+    font-size: 13px;
+    line-height: 19px;
+    padding-top: 2px;
+    color: #999;
+    position: relative;
+    top: -38px;
+    left: 38px;
+}
+.male
+{
+ color: #aaa;
+}
+
+.female
+{
+ color: #ccc;
+}
+
+  .stop-left-5 {
+            stop-color: #00B050;
+            /* Indigo */
+        }
+        
+        .stop-right-5 {
+            stop-color: #5FC375;
+            /* Teal */
+        }
+
+         .stop-left-47 {
+            stop-color: #5FC375;
+            /* Indigo */
+        }
+        
+        .stop-right-47 {
+            stop-color: #DBCD5D;
+            /* Teal */
+        }
+        .stop-left-45 {
+            stop-color: #DBCD5D;
+            /* Indigo */
+        }
+        
+        .stop-right-45 {
+            stop-color: #FFA500;
+            /* Teal */
+        }
+
+.stop-left-0 {
+            stop-color: #FFA500;
+            /* Indigo */
+        }
+        
+        .stop-right-0 {
+            stop-color: #FF0000
+            /* Teal */
+        }
+
+
+.controls {
+    margin: 0 0 20px 7px;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+fieldset#type {
+    margin-right: 49px;
+        width: 214px
+}
+
+#selState
+{
+    display: inline !important;
+    float: right;
+    position: relative;
+    right: 600px;
+    top: -26px;
+}
+
+.controls label {
+    float: left;
+    display: block;
+    cursor: pointer;
+    padding: 4px 6px;
+    background: #ddd;
+    border: 1px solid #ccc;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin: 0 3px 2px 0;
+    color: #888;
+}
+
+
+
+.type,.statestype
+{
+    line-height: 1;
+    color:white !important;
+    font-size: 12px;
+    
+}
+
+.sel {
+      background: #444;
+    color: white;
+    border: 1px solid #333;
+    cursor: default;
+}
+.type:hover
+{
+        background: #999;
+    color: white;
+    border: 1px solid #888;
+}
+
+.statename
+{
+    
+    float: right;
+    position: relative;
+    left: -320px;
+    top: -49px;
+
+}
+
+.pieFill
+{
+    fill:'#444' !important;
+}
