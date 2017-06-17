@@ -10,13 +10,13 @@ var connection = mysql.createConnection({
     database: config.db.db
 });
 //exports.dbConnectionService = function () {
-connection.connect(function (err) {
-    if (err) {
-        console.log('Error in connecting to DB', err);
-    } else {
-        console.log('You are now connected to DB...');
-    }
-});
+// connection.connect(function (err) {
+//     if (err) {
+//         console.log('Error in connecting to DB', err);
+//     } else {
+//         console.log('You are now connected to DB...');
+//     }
+// });
 
 //};
-module.exports.connection = connection;
+//module.exports.connection = connection;

@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = function(){
-	errorMessage:'An Error Occurred.'
+	//errorMessage:'An Error Occurred.'
 }
