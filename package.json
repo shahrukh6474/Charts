@@ -9,10 +9,7 @@
     "morgan": "1.8.1",
     "mysql": "2.13.0"
   },
-  "engines": {
-    "node": "6.11.0",
-    "npm": "3.10.10"
-  },
+
   "scripts": {
     "start": "node app.js"
 }

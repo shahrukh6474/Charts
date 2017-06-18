@@ -6,9 +6,9 @@ var express = require('express'),
         //port =server.listen(process.env.PORT || 3000),
         app = express(),
         dbConnection = '';
-
-http.createServer(app).listen( 3000, function() {
-    console.log('Express app started 3000');
+var port=process.env.PORT || 3000;
+http.createServer(app).listen( port, function() {
+    console.log('Express app started'+port);
 });
 
 app.get('/', function(req, res) {
