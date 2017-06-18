@@ -3,7 +3,7 @@
 var express = require('express'),
         bodyparser = require('body-parser'),
         morgan = require('morgan'),
-        port = 3002,
+        port =server.listen(process.env.PORT || 3000),
         app = express(),
         dbConnection = '';
 
